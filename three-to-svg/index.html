@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>THREE.js SVGRenderer demo</title>
+		<style>
+			body {
+				/* Make the body take up entire window minus a margin:
+				   http://stackoverflow.com/questions/485827/css-100-height-with-padding-margin
+				 */
+				position:   absolute;
+				top:        0;
+				left:       0;
+				right:      0;
+				bottom:     0;
+				margin:     20px;
+				margin-top: 40px;
+			}
+			
+			body {	
+				/* Stack children vertically using flex
+				   https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+ 	 			*/
+				display:          flex;
+				flex-direction:   column;
+			}
+			
+			.top {
+				/* Stack children horizontally within top half of screen */
+				display:          flex;
+				flex-direction:   row;
+				align-items:      center;
+			}
+			
+			.top, textarea {
+				height:           50%;
+			}
+			
+			.sides, .sides canvas, .sides div, .sides svg {
+				width:            100%;
+				height:           100%;
+			}
+			
+			/* Relative positioning for .sides so h1 can be centered above it */
+			.sides {
+				position:       relative;
+			}
+			h1 {
+				position:       absolute;
+				top:            0px;
+				width:          100%;
+				margin-top:     0px;
+				text-align:     center;
+			}
+		</style>
+		<style>
+			/* Make some things non-selectable:
+			   http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+			 */
+			.noselect {
+				cursor: default;
+				
+				-webkit-touch-callout: none; /* iOS Safari */
+				-webkit-user-select: none;   /* Chrome/Safari/Opera */
+				-khtml-user-select: none;    /* Konqueror */
+				-moz-user-select: none;      /* Firefox */
+				-ms-user-select: none;       /* IE/Edge */
+				user-select: none;           /* non-prefixed version, currently not supported by any browser */
+			}
+
+			html {
+				background-color: #fff;
+			}
+			
+			h1, #convert {
+				text-shadow:    2px 2px 2px #9999ff;
+			}
+			
+			h1 {
+				font-size:      250%;
+			}
+			
+			p {
+				border-bottom:  1px solid #2222ff;
+				margin-bottom:  5px;
+				font-weight:    bold;
+				color:          #3333ff
+			}
+			
+			#convert {
+				color: darkred;
+				font-size: 10em;
+				cursor: pointer;
+			}
+			
+			#convert:hover {
+				color: red;
+			}
+			
+			path:hover {
+				stroke:         red;
+				stroke-width:   2px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top noselect">
+			<div class="sides">
+				<h1>WebGL</h1>
+				<canvas id="webgl"></canvas>
+			</div>
+			<div class="middle">
+				<div id="convert">&#10145;</div>
+			</div>
+			<div class="sides">
+				<h1>SVG</h1>
+				<div id="svg">
+					<!-- svg rendering element gets inserted here -->
+				</div>
+			</div>
+		</div>
+		<p class="noselect">Source:</p>
+		<textarea id="source" cols=80 rows=1></textarea>
+   
+		<script src="../lib/three/three.min.js"></script>
+		<script src="../lib/three/SVGRenderer.js"></script>
+		<script src="../lib/three/Projector.js"></script>
+		<script src="three-to-svg.js"></script>
+	</body>
+</html>
