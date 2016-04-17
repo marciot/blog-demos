@@ -40,6 +40,10 @@
 				height:           100%;
 			}
 			
+			.middle {
+				z-index:          99;
+			}
+			
 			/* Relative positioning for .sides so h1 can be centered above it */
 			.sides {
 				position:       relative;
@@ -87,9 +91,9 @@
 			}
 			
 			#convert {
-				color: darkred;
-				font-size: 10em;
-				cursor: pointer;
+				color:          darkred;
+				font-size:      10vw;
+				cursor:         pointer;
 			}
 			
 			#convert:hover {
@@ -109,7 +113,9 @@
 				<canvas id="webgl"></canvas>
 			</div>
 			<div class="middle">
-				<div id="convert">&#10145;</div>
+					<!-- I use the variant selector &#xFE0E; to keep iOS devices from using an emoji icon:
+					  http://meta.stackexchange.com/questions/261074/prev-next-triangles-rendered-as-emojis-on-ios-devices -->
+				<div id="convert">&#10145;&#xFE0E;</div>
 			</div>
 			<div class="sides">
 				<h1>SVG</h1>
