@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>THREE.js Layout Demo</title>
+		<style>
+			body {
+				/* Make the body take up entire window minus a margin
+				   http://stackoverflow.com/questions/485827/css-100-height-with-padding-margin
+				 */
+				position:      absolute;
+				top:           0;
+				left:          0;
+				right:         0;
+				bottom:        0;
+				margin:        5em;
+			}
+			
+			canvas {
+				float:         left;
+				width:         50%;
+				height:        50%;
+				margin-right:  2em;
+				margin-bottom: 1em;
+			}
+			
+			h1 {
+				margin-top:    0px;
+				line-height:   2em;
+			}
+			
+			.main {
+				clear:         left;
+				margin-bottom: 5em;
+			}
+		</style>
+		<style>
+			/* Make some things non-selectable:
+			   http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
+			 */
+			.noselect {
+				cursor: default;
+				
+				-webkit-touch-callout: none; /* iOS Safari */
+				-webkit-user-select: none;   /* Chrome/Safari/Opera */
+				-khtml-user-select: none;    /* Konqueror */
+				-moz-user-select: none;      /* Firefox */
+				-ms-user-select: none;       /* IE/Edge */
+				user-select: none;           /* non-prefixed version, currently not supported by any browser */
+			}
+			
+			canvas {
+				background: beige;
+			}
+
+			html {
+				background-color: #fff;
+			}
+			
+			body {
+				/* From http://www.cssfontstack.com */
+				font-family: Palatino,Palatino Linotype,Palatino LT STD,Book Antiqua,Georgia,serif;
+				font-size: x-large;
+			}
+			
+			.beginning {
+				font-variant: small-caps;
+				text-indent:  0em;
+			}
+			
+			p {
+				text-indent:  2em;
+				text-align:   justify;
+				text-justify: inter-word;
+				line-height:  2em;
+			}
+		</style>
+	</head>
+	<body onload="onLoad()">
+	
+		<!-- Text from http://www.lipsum.com/ -->
+		
+		<canvas id="webgl" onclick="toggleRotation();"></canvas>
+		<h1 class="beginning">Lorem ipsum</h1>
+		<p class="beginning">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor, metus vitae fermentum commodo, neque justo commodo nisl, at laoreet erat odio imperdiet magna.
+		</p>
+		
+		<p class="main">Phasellus ac metus vitae risus hendrerit cursus vulputate et lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ultricies urna sed nulla venenatis accumsan. Aenean tortor ipsum, posuere sagittis faucibus a, ornare bibendum nibh. Donec tempus, massa non egestas malesuada, ligula felis molestie lacus, sed fermentum mauris metus non massa. Duis tempus tincidunt nibh. Sed ultrices porta laoreet. Suspendisse suscipit eros ut mauris convallis malesuada. Quisque sollicitudin ultricies risus quis mollis. Pellentesque et ex id eros convallis luctus id at leo.
+		</p>
+		
+		<script src="/lib/three/three.min.js"></script>
+		<script src="three-layout.js"></script>
+	</body>
+</html>
