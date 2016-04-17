@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>THREE.js Layout Demo</title>
-		<style>
+		<style> /* Positioning */
 			body {
 				/* Make the body take up entire window minus a margin
 				   http://stackoverflow.com/questions/485827/css-100-height-with-padding-margin
@@ -12,6 +12,7 @@
 				left:       0;
 				right:      0;
 				bottom:     0;
+				
 				margin:     3em;
 			}
 			
@@ -20,27 +21,13 @@
 				height:     100%;
 			}
 		</style>
-		<style>
-			/* Make some things non-selectable:
-			   http://stackoverflow.com/questions/826782/css-rule-to-disable-text-selection-highlighting
-			 */
-			.noselect {
-				cursor: default;
-				
-				-webkit-touch-callout: none; /* iOS Safari */
-				-webkit-user-select: none;   /* Chrome/Safari/Opera */
-				-khtml-user-select: none;    /* Konqueror */
-				-moz-user-select: none;      /* Firefox */
-				-ms-user-select: none;       /* IE/Edge */
-				user-select: none;           /* non-prefixed version, currently not supported by any browser */
+		<style> /* Formatting */
+			html {
+				background-color: white;
 			}
 			
 			canvas {
-				background: beige;
-			}
-
-			html {
-				background-color: #fff;
+				background-color: beige;
 			}
 		</style>
 	</head>
