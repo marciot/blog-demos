@@ -1,0 +1,48 @@
+I came across a blog post that demonstrates <a href="http://blog.felixbreuer.net/2014/08/05/using-threejs-to-create-vector-graphics-from-3d-visualizations.html" target="_blank">using THREE.js to create SVG images</a>. Since that demo was done in CoffeeScript, it took me a while to understand it and build an equivalent JavaScript <a href="http://marciot.github.io/blog-demos/three-to-svg/" target="_blank">demo</a> (and the <a href="https://github.com/marciot/blog-demos/tree/master/three-to-svg" target="_blank">source code</a>).
+
+The SVGRenderer is undocumented in the THREE.js website and it requires a few extra files that are not a part of the standard THREE.js distribution. This post will help you pull the necessary parts together.
+
+My demo is loosly based on this <a href="http://solutiondesign.com/blog/-/blogs/webgl-and-three-js-texture-mappi-1/">great THREE.js tutorial</a>. I modified it to show the WebGL output on the left-hand side and the SVG capture on the right-hand side. Clicking the arrow updates the SVG capture and shows the code for the SVG on the bottom of the page.
+
+When you hover your mouse cursor over the right-hand side, the paths of the SVG will highlight in red. These correspond to triangles in the original THREE.js model. 
+
+<img class="size-medium wp-image-543 aligncenter" src="https://mt236.files.wordpress.com/2016/03/three-to-svg.png?w=300" alt="three-to-svg" width="300" height="150" />
+
+The nice thing about rendering THREE.js models as SVG is that the visible faces will become <code>path</code> elements in the DOM, allowing you to highlight them with a single style sheet rule:
+
+[code language="css"]
+path:hover {
+   stroke:       red;
+   stroke-width: 2px;
+}
+[/code]
+
+This rule tells the web browser to stroke all <code>path</code> elements in a solid red line whenever the user hovers the mouse cursor over them.
+
+<h1>How it works:</h1>
+
+The demo uses the undocumented SVGRenderer object from THREE.js. The <code>SVGRenderer</code> object depends on another object called <code>Projector</code>. Neither are part of the official THREE.js build, so I grabbed the two source files from the "examples/js/renderer" directory of the THREE.js distribution from <a href="https://github.com/mrdoob/three.js/tree/master/examples/js/renderers">GitHub</a> and placed them in my "lib" directory.
+
+When the user clicks the arrow, the SVG on the right side is updated using a new instance of the SVGRenderer object. Here is what the code looks like:
+
+[code language="javascript"]
+var svgRenderer = new THREE.SVGRenderer();
+svgRenderer.setClearColor(0xffffff);
+svgRenderer.setSize(width,height);
+svgRenderer.setQuality('high');
+svgRenderer.render(scene,camera);
+[/code]
+
+The SVGRenderer will store the SVG data in the <code>domElement</code> attribute of itself. In the following code fragment, I insert it into a parent DIV and remove the <code>width</code> and <code>height</code> attributes from the <code>svg</code> element so that I can scale it with style sheet rules.
+
+[code language="javascript"]
+svgContainer.appendChild(svgRenderer.domElement);
+svgRenderer.domElement.removeAttribute('width');
+svgRenderer.domElement.removeAttribute('height');
+[/code]
+ 
+The SVG source for the bottom panel comes from the <code>svgContainer.innerHTML</code> attribute (<code>domElement.outerHTML</code> would work too). I use a regular expression to break up the source into lines and then post it into the destination text field:
+
+[code language="javascript"]
+document.getElementById('source').value = svgContainer.innerHTML.replace(/<path/g, "\n<path");
+[/code]
