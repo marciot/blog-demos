@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>THREE.js Earth with Day and Night Shader</title>
+        <style>
+            body {
+                position:         absolute;
+                top:              0;
+                left:             0;
+                right:            0;
+                bottom:           0;
+                margin:           0px;
+                overflow:         hidden;
+                background-color: black;
+            }
+            
+            canvas {
+                width:      100%;
+                height:     100%;
+            }
+        </style>
+    </head>
+    <body onload="onLoad()">
+        <canvas id="webgl"></canvas>
+        <script src="/lib/three/three.min.js"></script>
+        <script src="bluemarble.js"></script>
+    </body>
+</html>
